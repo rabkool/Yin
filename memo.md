@@ -115,6 +115,8 @@
   - ```
     models.UserInfo.objects.get(id=1)
     ```
+#### 画面URL
+ - http://127.0.0.1:8000/demo/index/
 
     
 
