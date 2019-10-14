@@ -16,8 +16,9 @@
 </head>
 
 <body class="container">
-<div ng-controller="AppController">
 
+<div ng-controller="AppController">
+    <h1>添加数据</h1>
     <form method="post" action="/demo/dataAdd/" class="form-horizontal">
         <!-- {% csrf_token %} -->
         <div class="form-group">
@@ -60,6 +61,7 @@
 
 
 <div ng-controller="AppController">
+    <h1>删除数据</h1>
 
     <form method="post" action="/demo/delete/" class="form-horizontal">
         <!-- {% csrf_token %} -->
@@ -75,25 +77,36 @@
 </div>
 <hr>
 
-<table style="color: green" border="2">
-    <tr>
-        <td>id</td>
-        <td>名前</td>
-        <td>パスワード</td>
-        <td>年齢</td>
-        <td>メール</td>
-    </tr>
-    {% for UserInfoDemo in user_info %}
+<div>
+    <h1>全部数据显示</h1>
+    <table style="color: green" border="2">
         <tr>
-            <td>{{ UserInfoDemo.userId }}</td>
-            <td>{{ UserInfoDemo.userName }}</td>
-            <td>{{ UserInfoDemo.passWord }}</td>
-            <td>{{ UserInfoDemo.userAge }}</td>
-            <td>{{ UserInfoDemo.userMail }}</td>
+            <td>id</td>
+            <td>名前</td>
+            <td>パスワード</td>
+            <td>年齢</td>
+            <td>メール</td>
         </tr>
-    {% endfor %}
-</table>
+                {% for UserInfoDemo in user_info %}
+                    <tr>
+                        <td>{{ UserInfoDemo.userId }}</td>
+                        <td>{{ UserInfoDemo.userName }}</td>
+                        <td>{{ UserInfoDemo.passWord }}</td>
+                        <td>{{ UserInfoDemo.userAge }}</td>
+                        <td>{{ UserInfoDemo.userMail }}</td>
+                    </tr>
+                {% endfor %}
+
+{#        <tr>#}
+{#            <td>{{ user_info.userId }}</td>#}
+{#            <td>{{ user_info.userName }}</td>#}
+{#            <td>{{ user_info.passWord }}</td>#}
+{#            <td>{{ user_info.userAge }}</td>#}
+{#            <td>{{ user_info.userMail }}</td>#}
+{#        </tr>#}
+    </table>
 </div>
+<hr>
 
 </body>
 </html>

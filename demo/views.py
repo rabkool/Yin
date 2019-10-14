@@ -11,9 +11,11 @@ def hello_world(request):
     return HttpResponse("Hello World")
 
 
-# 对送骨保密画面
+# 画面
 def index(request):
+    # 全部查询
     user_info = models.UserInfoDemo.objects.all()
+
     return render(request, 'index.html',
                   {
                       'user_info': user_info
