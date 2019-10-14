@@ -15,7 +15,6 @@ Django 添删改查
 #### DB关联命令
 
 - makemigrations # 创建模型变更的迁移文件
-  - 模型层
 - dumpdate # 把DB数据导出到文件
 - loaddata # 把文件数据导入到DB
 
