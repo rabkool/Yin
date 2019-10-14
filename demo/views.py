@@ -13,7 +13,13 @@ def hello_world(request):
 
 # 对送骨保密画面
 def index(request):
-    return render(request, 'index.html')
+    user_info = models.UserInfoDemo.objects.all()
+    return render(request, 'index.html',
+                  {
+                      'user_info': user_info
+                  }
+                  )
+
 
 # データ保存操作
 @csrf_exempt
@@ -24,6 +30,10 @@ def data_add(request):
     # userage = request.POST['userAge']
     # usermail = request.POST['userMail']
 
+    # 方法1
+    # models.UserInfoDemo.objects.create(userId=userid)
+
+    # 方法2
     info = models.UserInfoDemo()
     if len(userid) > 0:
         print("id不是null")
@@ -42,11 +52,16 @@ def data_add(request):
 @csrf_exempt
 def data_delete(request):
     userid = request.POST['userId']
-    info = models.UserInfoDemo()
-    if len(userid) > 0:
-        print("id不是null")
-        info.userId = userid;
 
-    info.delete()
+    # 方法1
+    models.UserInfoDemo.objects.filter(userId=userid).delete()
+
+    # 方法2
+    # info = models.UserInfoDemo()
+    # if len(userid) > 0:
+    #     print("id不是null")
+    #     info.userId = userid;
+    #
+    # info.delete()
 
     return HttpResponseRedirect("/demo/index")
