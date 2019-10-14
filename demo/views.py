@@ -25,10 +25,10 @@ def index(request):
 @csrf_exempt
 def data_add(request):
     userid = request.POST['userId']
-    # username = request.POST['userName']
-    # password = request.POST['passWord']
-    # userage = request.POST['userAge']
-    # usermail = request.POST['userMail']
+    username = request.POST['userName']
+    password = request.POST['passWord']
+    userage = request.POST['userAge']
+    usermail = request.POST['userMail']
 
     # 方法1
     # models.UserInfoDemo.objects.create(userId=userid)
@@ -38,10 +38,10 @@ def data_add(request):
     if len(userid) > 0:
         print("id不是null")
         info.userId = userid
-    # info.userName = username
-    # info.passWord = password
-    # info.userAge = userage
-    # info.userMail = usermail
+    info.userName = username
+    info.passWord = password
+    info.userAge = userage
+    info.userMail = usermail
 
     info.save()
 
