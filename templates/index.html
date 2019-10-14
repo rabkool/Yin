@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html ng-app="myApp" lang="ja">
+　
+<head>
+    　　　<!-- 見た目用にBootstrapを使う -->
+    　　　
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    　　　<!-- AngularJS 1.7.8を公式サイトから引っ張ってくる -->
+    　　　
+    <script src="../../static/js/common/angular.js"></script>
+    　　　<!-- ↓↓↓自分で作ったJavaScriptはここから↓↓↓ -->
+    　　　
+    <script src="../../static/js/app.js"></script>
+    <title></title>
+</head>
+
+<body class="container">
+<div ng-controller="AppController">
+    <div>
+        <form method="post" action="/demo/dataAdd/">
+            <!-- {% csrf_token %} -->
+            <div class="form-group">
+                <label for="userid">id</label>
+                <input type="text" class="form-control" name="userId" placeholder="id" value="">
+
+{##}
+{#                <label for="uesrname">id</label>#}
+{#                <input type="text" class="form-control" name="userName" placeholder="名前" ng-model="uesrname">#}
+{##}
+{##}
+{#                <label for="password">id</label>#}
+{#                <input type="text" class="form-control" name="passWord" placeholder="パスワード" ng-model="password">#}
+{##}
+{#                <label for="userage">id</label>#}
+{#                <input type="text" class="form-control" name="userAge" placeholder="年齢" ng-model="userage">#}
+{##}
+{##}
+{#                <label for="usermail">id</label>#}
+{#                <input type="text" class="form-control" name="userMail" placeholder="メール" ng-model="usermail">#}
+            </div>
+            <button class="btn btn-primary">登録</button>
+        </form>
+
+                <form method="post" action="/demo/delete/">
+            <!-- {% csrf_token %} -->
+            <div class="form-group">
+                <label for="userid">id</label>
+                <input type="text" class="form-control" name="userId" placeholder="id" value="">
+            </div>
+            <button class="btn btn-primary">削除</button>
+        </form>
+    </div>
+    <hr>
+
+    <div>
+        <table style="color: green" border="2">
+            <tr>
+                <td>id</td>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+        <a href="/matuyaindex/">追加</a>
+        <br/>
+        <a href="/matuyadelete/">削除</a>
+        <br/>
+        <a href="/detail/">全部データ表示</a>
+        <br/>
+        <a href="/content/">全部データ表示(編集)</a>
+        <br/>
+    </div>
+</div>
+
+</body>
+</html>
