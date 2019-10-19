@@ -6,6 +6,9 @@ from demo import models
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
+# 分页插件
+from django.core.paginator import Paginator
+
 
 def hello_world(request):
     return HttpResponse("Hello World")
@@ -13,12 +16,35 @@ def hello_world(request):
 
 # 画面
 def index(request):
-    # 全部查询
-    user_info = models.UserInfoDemo.objects.all()
+    page = request.GET.get('page')
+    if page:
+        page = int(page)
+    else:
+        page = 1
+    print(page)
 
+    # 全部查询
+    detail_info = models.UserInfoDemo.objects.all()
+
+    # 分页判断 10: 显示条数
+    paginator = Paginator(detail_info, 10)
+    page_num = paginator.num_pages
+    page_article_list = paginator.page(page)
+    if page_article_list.has_next():
+        next_page = page + 1
+    else:
+        next_page = page
+    if page_article_list.has_previous():
+        previous_page = page - 1
+    else:
+        previous_page = page
     return render(request, 'index.html',
                   {
-                      'user_info': user_info
+                      'user_info': page_article_list,
+                      'page_num': range(1, page_num + 1),
+                      'curr_page': page,
+                      'next_page': next_page,
+                      'previous_page': previous_page
                   }
                   )
 
