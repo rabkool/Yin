@@ -77,6 +77,48 @@
 </div>
 <hr>
 
+<div>
+    <div ng-controller="AppController">
+
+        <h1>検索</h1>
+
+            <form method="set" action="/demo/select/" class="form-horizontal">
+            <!-- {% csrf_token %} -->
+            <div class="form-group">
+                <label for="userid" class="col-sm-1 control-label">id</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" name="userId" placeholder="id" value="">
+                </div>
+               <input type="submit" value="検索">
+            </div>
+
+        </form>
+
+        <div>
+            <h1>数据显示</h1>
+            <table class="table table-bordered ">
+                <tr class="text-center">
+                    <td style="width: 4%;">Id</td>
+                    <td>名前</td>
+                    <td>パスワード</td>
+                    <td>年齢</td>
+                    <td>メール</td>
+                </tr>
+
+                <tr>
+                    <td class="text-center">{{ user_select.userId }}</td>
+                    <td>{{ user_select.userName }}</td>
+                    <td>{{ user_select.passWord }}</td>
+                    <td>{{ user_select.userAge }}</td>
+                    <td>{{ user_select.userMail }}</td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+    </div>
+</div>
+<hr>
+
 <div ng-controller="AppController">
     <div>
         <h1>全部数据显示</h1>
@@ -123,6 +165,5 @@
     </div>
     <hr>
 </div>
-
 </body>
 </html>

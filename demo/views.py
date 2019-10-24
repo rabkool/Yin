@@ -93,3 +93,25 @@ def data_delete(request):
     # info.delete()
 
     return HttpResponseRedirect("/demo/index")
+
+
+# update
+@csrf_exempt
+def update(request):
+    # userid = request.POST['userId']
+    # username = request.POST['userName']
+    models.UserInfoDemo.objects.filter(userId=1).update(userName="user",
+                                                        passWord="123",
+                                                        userAge="11",
+                                                        userMail="123321")
+    return HttpResponseRedirect("!!")
+
+# select
+def select(request):
+    userid = request.GET['userId']
+    # 全部查询
+    user_select = models.UserInfoDemo.objects.get(userId=userid)
+    return render(request,
+                  "index.html",
+                  {"user_select": user_select}
+                  )
