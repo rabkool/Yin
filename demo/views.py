@@ -63,9 +63,8 @@ def data_add(request):
 
     # 方法2
     info = models.UserInfoDemo()
-    if len(userid) > 0:
-        print("id不是null")
-        info.userId = userid
+
+    info.userId = userid
     info.userName = username
     info.passWord = password
     info.userAge = userage
@@ -86,9 +85,8 @@ def data_delete(request):
 
     # 方法2
     # info = models.UserInfoDemo()
-    # if len(userid) > 0:
-    #     print("id不是null")
-    #     info.userId = userid;
+    #
+    # info.userId = userid;
     #
     # info.delete()
 
@@ -105,6 +103,7 @@ def update(request):
                                                         userAge="11",
                                                         userMail="123321")
     return HttpResponseRedirect("!!")
+
 
 # select
 def select(request):
