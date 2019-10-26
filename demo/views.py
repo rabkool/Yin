@@ -52,11 +52,11 @@ def index(request):
 # データ保存操作
 @csrf_exempt
 def data_add(request):
-    userid = request.POST['userId']
-    username = request.POST['userName']
-    password = request.POST['passWord']
-    userage = request.POST['userAge']
-    usermail = request.POST['userMail']
+    user_id = request.POST['userId']
+    user_name = request.POST['userName']
+    user_password = request.POST['passWord']
+    user_age = request.POST['userAge']
+    user_mail = request.POST['userMail']
 
     # 方法1
     # models.UserInfoDemo.objects.create(userId=userid)
@@ -64,11 +64,11 @@ def data_add(request):
     # 方法2
     info = models.UserInfoDemo()
 
-    info.userId = userid
-    info.userName = username
-    info.passWord = password
-    info.userAge = userage
-    info.userMail = usermail
+    info.userId = user_id
+    info.userName = user_name
+    info.passWord = user_password
+    info.userAge = user_age
+    info.userMail = user_mail
 
     info.save()
 
@@ -78,10 +78,10 @@ def data_add(request):
 # データ削除操作
 @csrf_exempt
 def data_delete(request):
-    userid = request.POST['userId']
+    user_id = request.POST['userId']
 
     # 方法1
-    models.UserInfoDemo.objects.filter(userId=userid).delete()
+    models.UserInfoDemo.objects.filter(userId=user_id).delete()
 
     # 方法2
     # info = models.UserInfoDemo()
@@ -101,16 +101,19 @@ def update(request):
     models.UserInfoDemo.objects.filter(userId=1).update(userName="user",
                                                         passWord="123",
                                                         userAge="11",
-                                                        userMail="123321")
+                                                        userMail="123321"
+                                                        )
     return HttpResponseRedirect("!!")
 
 
 # select
 def select(request):
-    userid = request.GET['userId']
+    user_id = request.GET['userId']
     # 全部查询
-    user_select = models.UserInfoDemo.objects.get(userId=userid)
+    user_select = models.UserInfoDemo.objects.get(userId=user_id)
     return render(request,
                   "index.html",
-                  {"user_select": user_select}
+                  {
+                      "user_select": user_select
+                  }
                   )
