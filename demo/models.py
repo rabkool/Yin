@@ -13,3 +13,13 @@ class UserInfoDemo(models.Model):
     class Meta:
         managed = False
         db_table = 'UserInfoDemo'
+
+
+class UserDemo(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=32)
+    pwd = models.CharField(max_length=32)
+
+    class Meta:
+        managed = False
+        db_table = 'UserDemo'

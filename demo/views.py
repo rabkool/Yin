@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from django.http import HttpResponse, HttpResponseRedirect
 from demo import models
@@ -16,6 +16,7 @@ def hello_world(request):
 
 # 画面
 def index(request):
+    # 分页操作
     page = request.GET.get('page')
     if page:
         page = int(page)
@@ -117,3 +118,36 @@ def select(request):
                       "user_select": user_select
                   }
                   )
+
+
+# 注册
+@csrf_exempt
+def register(request):
+    if request.method == 'GET':
+        return render(request, 'register.html')
+    name = request.POST['name']
+    pwd = request.POST['pwd']
+    pwd2 = request.POST['pwd2']
+
+    if pwd == pwd2:
+        user_obj = models.UserDemo.objects.filter(name=name).first()
+        if user_obj:
+            return HttpResponse('用户存在')
+        else:
+            models.UserDemo.objects.create(name=name, pwd=pwd).save()
+        return HttpResponseRedirect("/demo/register")
+
+
+# 登陆
+@csrf_exempt
+def login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    if request.method == 'POST':
+        name = request.POST['name']
+        pwd = request.POST['pwd']
+        user_obj = models.UserDemo.objects.filter(name=name, pwd=pwd).first()
+        if user_obj:
+            return HttpResponse('登陆成功')
+        else:
+            return HttpResponse('用户名或密码错误')

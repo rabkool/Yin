@@ -117,9 +117,20 @@ Django 添删改查
   - ```
     models.UserInfo.objects.get(id=1)
     ```
-
     
-
-````
-
-````
+#### 数据库设计
+ 
+ - userId
+   - int
+   - Not null
+   - Unique 
+   - Primary key
+ - userName
+   - VARCHAR(0,100)
+ - passWord
+   - VARCHAR(0,100)
+ - userAge
+   - VARCHAR(0,100)
+ - userMail
+   - VARCHAR(0,100)
+ 
